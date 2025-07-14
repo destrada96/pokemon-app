@@ -1,0 +1,33 @@
+<mat-card 
+  class="pokemon-card" 
+  [style]="getCardStyle()"
+  (click)="viewDetails()">
+  <mat-card-header>
+    <mat-card-title>{{ pokemon.name }}</mat-card-title>
+    <mat-card-subtitle>#{{ pokemon.id.toString().padStart(3, '0') }}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <img 
+    mat-card-image 
+    [src]="pokemon.image" 
+    [alt]="pokemon.name"
+    onerror="this.src='assets/images/pokemon-placeholder.png'">
+  
+  <mat-card-content>
+    <div class="types-container">
+      <span 
+        *ngFor="let type of pokemon.types" 
+        class="type-badge"
+        [style.background-color]="type.color">
+        {{ type.name | titlecase }}
+      </span>
+    </div>
+    
+    <div class="stats-container">
+      <div *ngFor="let stat of pokemon.stats.slice(0, 3)" class="stat-item">
+        <span class="stat-name">{{ stat.name }}:</span>
+        <span class="stat-value">{{ stat.base_stat }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

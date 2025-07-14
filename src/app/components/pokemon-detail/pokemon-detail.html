@@ -1,0 +1,78 @@
+<div class="pokemon-detail-container">
+    <div *ngIf="isLoading" class="loading-spinner">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      <mat-card>
+        <mat-card-content>
+          <h2>Pokémon not found</h2>
+          <p>The Pokémon you're looking for doesn't exist or there was an error loading it.</p>
+          <button mat-raised-button color="primary" routerLink="/">Back to Pokémon List</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div *ngIf="pokemon && !isLoading" class="pokemon-detail">
+      <mat-card class="pokemon-card">
+        <mat-card-header>
+          <mat-card-title>{{ pokemon.name }}</mat-card-title>
+          <mat-card-subtitle>#{{ pokemon.id.toString().padStart(3, '0') }}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <img 
+          mat-card-image 
+          [src]="pokemon.image" 
+          [alt]="pokemon.name"
+          class="pokemon-image"
+          onerror="this.src='assets/images/pokemon-placeholder.png'">
+        
+        <mat-card-content>
+          <div class="types-container">
+            <span 
+              *ngFor="let type of pokemon.types" 
+              [style]="getTypeStyle(type.name, type.color)">
+              {{ type.name | titlecase }}
+            </span>
+          </div>
+          
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="detail-label">Height</span>
+              <span class="detail-value">{{ pokemon.height }} m</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Weight</span>
+              <span class="detail-value">{{ pokemon.weight }} kg</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Color</span>
+              <span class="detail-value">{{ pokemon.color | titlecase }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+  
+      <div class="stats-section">
+        <h3>Stats</h3>
+        <app-stats-chart [stats]="pokemon.stats"></app-stats-chart>
+        
+        <div class="stats-grid">
+          <div *ngFor="let stat of pokemon.stats" class="stat-item">
+            <span class="stat-name">{{ stat.name }}</span>
+            <mat-progress-bar 
+              mode="determinate" 
+              [value]="getStatPercentage(stat.base_stat)"
+              [color]="stat.base_stat > 100 ? 'primary' : 'accent'">
+            </mat-progress-bar>
+            <span class="stat-value">{{ stat.base_stat }}</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="evolution-section" *ngIf="pokemon.evolutionChain">
+        <h3>Evolution Chain</h3>
+        <app-evolution-chain [evolutionChain]="pokemon.evolutionChain"></app-evolution-chain>
+      </div>
+    </div>
+  </div>

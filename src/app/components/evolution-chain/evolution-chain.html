@@ -1,0 +1,18 @@
+<div class="evolution-chain">
+    <div *ngIf="evolutionStages$ | async as evolutionStages" class="stages-container">
+      <div *ngFor="let stage of evolutionStages; let i = index" class="stage">
+        <div class="pokemon-evolution">
+          <img 
+            [src]="stage.imageUrl" 
+            [alt]="stage.name"
+            class="evolution-image"
+            onerror="this.src='assets/images/pokemon-placeholder.png'">
+          <span class="evolution-name">{{ stage.name }}</span>
+        </div>
+        
+        <div *ngIf="i < evolutionStages.length - 1" class="evolution-arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
