@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app.ts"],
+  "sourcesContent": ["\n    .spacer { flex: 1 1 auto; }\n    .container { padding: 20px; }\n  "],
+  "mappings": ";AACI,CAAA;AAAU,QAAA,EAAA,EAAA;;AACV,CAAA;AAAa,WAAA;;",
+  "names": []
+}

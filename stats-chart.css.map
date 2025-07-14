@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/stats-chart/stats-chart.scss"],
+  "sourcesContent": [".chart-container {\n    position: relative;\n    width: 100%;\n    max-width: 500px;\n    margin: 0 auto;\n  }"],
+  "mappings": ";AAAA,CAAA;AACI,YAAA;AACA,SAAA;AACA,aAAA;AACA,UAAA,EAAA;;",
+  "names": []
+}
