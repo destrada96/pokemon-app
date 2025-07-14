@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/pokemon-app",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
